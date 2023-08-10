@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="addTodo">
+      <input v-model="newTodo">
+      <button>Add Todo</button>
+    </form>
+    <ul>
+      <li v-for="todo in filteredTodos" :key="todo.id">
+        <input type="checkbox" v-model="todo.done">
+        <span :class="{ done: todo.done }">{{ todo.text }}</span>
+        <button @click="removeTodo(todo)">X</button>
+      </li>
+    </ul>
+    <button @click="hideCompleted = !hideCompleted">
+      {{ hideCompleted ? 'Show all' : 'Hide completed' }}
+    </button>
+  </div>
+  <script type="module">
+    const { createApp, ref, computed } = Vue;
+    
+    createApp({
+      setup() {
+        let id = 0
+    
+        const newTodo = ref('')
+        // hideCompleted 상태에 따라 다른 반응형 상태를 의존성으로 추적한다.
+        const hideCompleted = ref(false)
+        const todos = ref([
+          { id: id++, text: 'HTML 배우기', done: true },
+          { id: id++, text: 'JavaScript 배우기', done: true },
+          { id: id++, text: 'Vue 배우기', done: false }
+        ])
+
+        const filteredTodos = computed(() => {
+          return hideCompleted.value ? todos.value.filter(td => !td.done) : todos.value 
+        });
+    
+        function addTodo() {
+          todos.value.push({ id: id++, text: newTodo.value, done: false })
+          newTodo.value = ''
+        }
+    
+        function removeTodo(todo) {
+          todos.value = todos.value.filter((t) => t !== todo)
+        }
+    
+        return {
+          newTodo,
+          hideCompleted,
+          todos,
+          filteredTodos,
+          addTodo,
+          removeTodo,
+        }
+      }
+    }).mount('#app')
+    </script>
+</body>
+</html>

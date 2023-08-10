@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="App">
+    <ul>
+      <div>
+        <label for="name">과일 이름</label>
+        <input id="name" ref="nameRef" />
+        <label for="price">가격</label>
+        <input id="price" ref="priceRef" />
+        <button @click="addItem">확인</button>
+      </div>
+      <li v-for="fruit in fruits" v-bind:key="fruit.key">
+        <strong>{{fruit.name}}</strong>
+        <strong>{{fruit.price}} 원</strong>
+      </li>
+    </ul>
+  </div>
+  <script>
+    const {onMounted, createApp, ref} = Vue;
+    createApp({
+      setup() {
+
+
+        const nameRef = ref(null);
+        const priceRef = ref(null);
+
+        const item = ref({
+          id:0,
+          name: "",
+          price: 0
+        })
+
+        const fruits = ref(
+          [
+            {id:1, name:'banana', price:5000},
+            {id:2, name:'apple', price:2500},
+            {id:3, name:'pear', price:4000},
+          ]
+        );
+
+        const addItem = () => {
+          let add = {id:fruits.value.length+1, name:nameRef.value.value, price:priceRef.value.value}
+          fruits.value.push(add);
+        }
+
+        return {
+          nameRef,
+          priceRef,
+          item,
+          fruits,
+          addItem
+        }
+      }     
+    }).mount("#App");
+  </script>
+</body>
+</html>

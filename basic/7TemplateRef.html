@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="App">
+    <p ref="pRef">안녕</p>
+  </div>
+  <script type="module">
+    const {createApp, onMounted, ref} = Vue;
+
+    createApp({
+      setup(){
+
+        // 컴포넌트가 mount 된 이후 동작
+        onMounted(() => {
+          pRef.value.textContent = "hi";
+        })
+
+        const pRef = ref(null);
+
+        return {
+          pRef
+        }
+      }
+    }).mount('#App');
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="App">
+    <button v-on:click="btnFlag = !btnFlag">CLICK!</button>
+    <child-component>
+      <strong v-if="btnFlag">hihi</strong>
+    </child-component>
+  </div>
+  <script type="module">
+    import ChildComponent from './12Slot.js';
+    const {createApp, ref} = Vue;
+
+    createApp({
+      components: {
+        ChildComponent
+      },
+      setup(){
+
+        const childMsg = ref('hihi');
+        const btnFlag = ref(true);
+
+        return {
+          childMsg,
+          btnFlag
+        }
+      }
+    }).mount('#App');
+  </script>
+</body>
+</html>

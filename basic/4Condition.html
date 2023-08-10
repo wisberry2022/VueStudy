@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="App">
+    <div>
+      <button @click="changeFlag" >CLICK!</button>
+    </div>
+    <h2 v-if="flag">A-Master</h2>
+    <h2 v-else>B-Master</h2>
+  </div>
+  <script>
+    const {createApp, ref} = Vue;
+    createApp({
+      setup() {
+        const flag = ref(true);
+
+        const changeFlag = () => {
+          flag.value = !flag.value
+        }
+
+        return {
+          flag,
+          changeFlag
+        }
+      }     
+    }).mount("#App");
+  </script>
+</body>
+</html>
