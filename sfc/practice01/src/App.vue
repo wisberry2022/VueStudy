@@ -1,9 +1,7 @@
 <script setup>
-  // import Total from './components/basic/slot/NamedSlot/Total.vue';
-  import SlotPractice from './components/basic/slot/SlotPractice.vue';
+import VPages from './components/basic/vmodel/VPages.vue';
 </script>
 
 <template>
-  <!-- <total></total> -->
-  <slot-practice></slot-practice>
+  <v-pages></v-pages>
 </template>
