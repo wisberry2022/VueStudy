@@ -1,7 +1,7 @@
 <script setup>
-import VPages from './components/basic/vmodel/VPages.vue';
+import MainVue from './components/basic/asynccomponent/MainVue.vue';
 </script>
 
 <template>
-  <v-pages></v-pages>
+  <main-vue></main-vue>
 </template>
