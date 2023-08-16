@@ -1,7 +1,10 @@
 <script setup>
-import MainVue from './components/basic/asynccomponent/MainVue.vue';
 </script>
 
 <template>
-  <main-vue></main-vue>
+  <div class="container">
+    <router-view></router-view>
+  </div>
 </template>
+
+<router-link to="/">루트로 가기</router-link>
