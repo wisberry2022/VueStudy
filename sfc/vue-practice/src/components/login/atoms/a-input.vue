@@ -13,7 +13,7 @@
 </style>
 
 <script setup>
-  import {ref, inject, watch, onMounted, provide} from 'vue';
+  import {ref, reactive, provide} from 'vue';
 
   const iRef = ref(null);
 
@@ -22,23 +22,8 @@
   const iType = ref(props.iType);
   const placeholder = ref(props.placeholder);
   const loginKey = props.login;
+  console.log(loginKey);
 
-  // const {loginData, setLoginData} = inject('loginData');
-
-  const loginData = reactive({loginKey:iRef.value.value});
-
-  provide('loginDatas', loginData);
-
-
-
-  // const setData = (e) => {
-  //   loginData[loginKey] = e.target.value;
-  // }
-
-
-  // watch(()=>loginData.isLogin, () => {
-  //    setLoginData(loginKey, iRef.value.value);
-  // })
   
 
 </script>
